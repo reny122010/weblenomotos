@@ -23,13 +23,13 @@
     <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <script type="text/javascript" src="../vendors/angular-1.5.8/angular.min.js"></script>
     <script type="text/javascript" src="../vendors/angular-1.5.8/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="js/angular/controllerVendas.js"></script>
+    <script type="text/javascript" src="js/angular/controllerPagamentos.js"></script>
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md" ng-controller="controllervendas">
+  <body class="nav-md" ng-controller="controllerpagamentos">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -93,7 +93,7 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Vendas <small>{{nome}}</small></h2>
+                    <h2>Pagamentos <small>{{nome}}</small></h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -105,9 +105,8 @@
                           <tr class="headings">
                             <th class="column-title">Número </th>
                             <th class="column-title">Data </th>
-                            <th class="column-title">Itens </th>
+                            <th class="column-title">Valor </th>
                             <th class="column-title">Cliente </th>
-                            <th class="column-title">Total</th>
                             <th class="column-title no-link last"><span class="nobr">Ação</span></th>
                             <th></th>  
                             <th class="bulk-actions" colspan="7">
@@ -117,14 +116,12 @@
                         </thead>
 
                         <tbody>
-                          <tr class="even pointer" ng-repeat="venda in vendas">
+                          <tr class="even pointer" ng-repeat="pagamento in pagamentos">
                             <td class=" ">{{$index + 1}}</td>
-                            <td class=" ">{{venda.data}}</td>
-                            <td class=" ">{{venda.itens}}</td>
-                            <td class=" ">{{venda.nome}}</td>
-                            <td class="a-right a-right ">{{venda.valor}}</td>
-                            <td class=" last"><a ng-click="showItens(venda.cpfcliente,venda.idcompra)" href="#">Ver detalhes</a>
-                            <td class=" last"><a ng-click="cancelarCompra(venda.idcompra)" href="#">Cancelar</a>
+                            <td class=" ">{{pagamento.data}}</td>
+                            <td class=" ">{{pagamento.valor}}</td>
+                            <td class=" ">{{pagamento.nome}}</td>
+                            <td class=" last"><a ng-click="cancelarPagamento(pagamento.id)" href="#">Cancelar</a>
                             </td>
                           </tr>
                         </tbody>

@@ -158,7 +158,7 @@ else
 
  if ( $stmt = $conn->prepare("UPDATE tbcliente SET bairro=?,cidade=?,limite = ?,logradouro = ?,nome = ?,sobrenome= ?, telefone = ? WHERE cpf = ?")) 
  {
-    $stmt->bind_param("ssissssi",$Cliente->bairro,$Cliente->cidade,$Cliente->limite,$Cliente->logradouro,$Cliente->nome,$Cliente->sobrenome,$Cliente->telefone,$Cliente->cpf);
+    $stmt->bind_param("ssdssssi",$Cliente->bairro,$Cliente->cidade,$Cliente->limite,$Cliente->logradouro,$Cliente->nome,$Cliente->sobrenome,$Cliente->telefone,$Cliente->cpf);
 
  
     $stmt->execute();

@@ -13,6 +13,10 @@ angular.module('leno',[])
 			"addPagamento"	: "addPagamento.php"
 		};
 
+		var switchFloatPoint = function(str){
+			return str.replace(",",".");
+		};
+
  		var QueryString = function () {
 		  var query_string = {};
 		  var query = $window.location.search.substring(1);
@@ -59,15 +63,20 @@ angular.module('leno',[])
 			$scope.alterar = false;
 		};
 
-		$scope.salvar = function(user){
+
+
+		$scope.salvar = function(){
 			$scope.alterar = true;
-			console.log(user);
+			$scope.user.limite = switchFloatPoint($scope.user.limite);
+			console.log($scope.user.limite);
  			$http({
 		     url: serverRouting.link+serverRouting.updateUser,
 		     method: "GET",
-		     params: user 
+		     params: $scope.user 
 			})
 			.success(function(response){
+				console.log($scope.user);
+				getClient();
 				$window.alert(response.menssagem);
 		    })
 		    .error(function(response){
@@ -96,10 +105,14 @@ angular.module('leno',[])
 		$scope.showVendas = function(){
 	 		$window.location = "index.html?cpf="+cpf;
 	 	};
+	 	$scope.showPagamentos = function(){
+	 		$window.location = "pagamentos.html?cpf="+cpf;
+	 	};
 		$scope.addPagamento = function(){
 
 	 		var valor = document.getElementById('valor').value;
 	 		console.log(valor);
+	 		valor = switchFloatPoint(valor);
 			$http({
 		     	url: serverRouting.link+serverRouting.addPagamento,
 		     	method: "GET",

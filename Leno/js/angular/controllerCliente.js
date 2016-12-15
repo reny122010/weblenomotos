@@ -23,6 +23,11 @@ angular.module('leno',[])
 	};
 
  	$scope.addUser = function(){
+
+ 		if($scope.user.limite == "" || $scope.user.limite == undefined ){
+ 			$scope.user.limite = -1;
+ 		}
+ 		
 		$http({
 		    url: serverRouting.link+serverRouting.addUser,
 		    method: "GET",

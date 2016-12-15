@@ -14,9 +14,14 @@ angular.module('leno',[])
 			"getProduto"	: "listProduto.php",
 			"getAllProduto"	: "listAllProduto.php"
 		};
+		var switchFloatPoint = function(str){
+			return str.replace(",",".");;
+		};
 
  		$scope.addProduto = function(){
  			console.log("Teste");
+ 			$scope.produto.preco  = switchFloatPoint($scope.produto.preco);
+			$scope.produto.custo  = switchFloatPoint($scope.produto.custo);
  			$http({
 			     url: serverRouting.link+serverRouting.addProduto,
 			     method: "GET",

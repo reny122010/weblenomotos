@@ -34,6 +34,10 @@ angular.module('leno',[])
 		  return query_string;
 		}();
 
+		var switchFloatPoint = function(str){
+			return str.replace(",",".");;
+		};
+
 
 
 		var codigodebarras = QueryString.codigo;
@@ -45,7 +49,7 @@ angular.module('leno',[])
 			})
 			.success(function(response){
 
-				console.log(response);
+				console.log();
 				$scope.produto = response[0];
 		    })
 		    .error(function(response){
@@ -58,9 +62,11 @@ angular.module('leno',[])
 			$scope.alterar = false;
 		};
 
-		$scope.salvar = function(user){
+		$scope.salvar = function(){
 			$scope.alterar = true;
-
+			$scope.produto.preco  = switchFloatPoint($scope.produto.preco);
+			$scope.produto.custo  = switchFloatPoint($scope.produto.custo);
+			console.log($scope.produto.custo);
  			$http({
 		     url: serverRouting.link+serverRouting.updateProduto,
 		     method: "GET",
@@ -113,5 +119,6 @@ angular.module('leno',[])
 	 	};
 
 		getProduto();
+		console.log("teste");
  		
  }]); 

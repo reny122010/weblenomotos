@@ -33,7 +33,8 @@
 			"realizarCompra"	: "finalizarCompra.php",
 			"addProduto"		: "addProdutoCompra.php",
 			"getProdutoCompra"	: "listProdutoCompra.php",
-			"cancelarProduto"	: "removerItem.php"
+			"cancelarProduto"	: "removerItem.php",
+			"addPagamento"		: "addPagamento.php"
 		};
 
  		var atualState =  function(state){
@@ -65,6 +66,11 @@
 		 		};
  			}
  		};
+
+ 		var switchFloatPoint = function(str){
+			return str.replace(",",".");
+		};
+
  		var select = function (val) {
  			console.log(val);
 		    var selectCliente = document.getElementById('mySelectCliente');
@@ -284,8 +290,9 @@
 	 	};
 
 	 	$scope.addPagamento = function(){
-
 	 		var valor = document.getElementById('valor').value;
+	 		console.log(valor);
+	 		valor = switchFloatPoint(valor);
 	 		console.log(valor);
 			$http({
 		     	url: serverRouting.link+serverRouting.addPagamento,
