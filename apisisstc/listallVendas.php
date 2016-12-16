@@ -84,7 +84,7 @@ if(!isset($_GET['cpf']))
     (select sum(quantidade) from tbprodutosparacompra as produtocomprados
     where produtocomprados.idcompra = compra.idcompra) as itens,cliente.nome,compra.valor
     from tbcompra as compra inner join tbcliente as cliente
-    on compra.cpfcliente = cliente.cpf where not(compra.data is null);")) 
+    on compra.cpfcliente = cliente.cpf where not(compra.data is null) order by compra.data desc;")) 
     {
         $stmt->execute();
         $result = $stmt->get_result();

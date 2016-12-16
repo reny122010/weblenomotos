@@ -32,7 +32,7 @@ else
 $myArray = array();   
 
 $rows= array();
-    if ( $stmt = $conn->prepare("SELECT idproduto,codigodebarras, nome FROM tbproduto where ativo = 1") )
+    if ( $stmt = $conn->prepare("SELECT idproduto,codigodebarras, nome FROM tbproduto where ativo = 1 order by codigodebarras") )
     {
 
         $stmt->execute();

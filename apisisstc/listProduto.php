@@ -14,22 +14,22 @@ function utf8ize($d) {
     return $d;
 }
 
-$concat = " WHERE ativo = 1"; 
+$concat = " WHERE ativo = 1 "; 
 if(isset($_GET['codigodebarras']))
 {
-   $concat .= " and codigodebarras = ".$_GET['codigodebarras']; 
+   $concat .= " and codigodebarras = ".$_GET['codigodebarras']." order by quantidade asc"; 
 }
 else
 {
     if(!isset($_GET['pagina']))
     {
-        $concat .= " limit 0,10"; 
+        $concat .= " order by quantidade asc limit 0,10"; 
     }
     else
     {
         $pagina= $_GET['pagina'];
         $limite = (int) $pagina*10;
-        $concat .= " limit ".$limite.",10";  
+        $concat .= " order by quantidade asc limit ".$limite.",10";  
     }
 }
 

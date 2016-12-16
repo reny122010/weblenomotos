@@ -18,19 +18,19 @@ function utf8ize($d) {
 
 if(isset($_GET['cpf']))
 {
-   $concat .= " and cpf = ".$_GET['cpf']; 
+   $concat .= " and cpf = ".$_GET['cpf']." order by nome"; 
 }
 else
 {
     if(!isset($_GET['pagina']))
     {
-        $concat .= " limit 0,10"; 
+        $concat .= " order by nomelimit 0,10"; 
     }
     else
     {
         $pagina= $_GET['pagina'];
         $limite = (int) $pagina*10;
-        $concat .= " limit ".$limite.",10";  
+        $concat .= " order by nome limit ".$limite.",10";  
     }
 }
 
@@ -48,7 +48,7 @@ else
 $myArray = array();   
 
 $rows= array();
-    if ( $stmt = $conn->prepare("SELECT * FROM tbcliente". $concat)) 
+    if ( $stmt = $conn->prepare("SELECT * FROM tbcliente ". $concat)) 
     {
         $stmt->execute();
         $result = $stmt->get_result();

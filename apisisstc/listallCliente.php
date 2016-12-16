@@ -30,7 +30,7 @@ else
 $myArray = array();   
 
 $rows= array();
-    if ( $stmt = $conn->prepare("SELECT nome,cpf,sobrenome FROM tbcliente where ativo = 1")) 
+    if ( $stmt = $conn->prepare("SELECT nome,cpf,sobrenome FROM tbcliente where ativo = 1 order by nome")) 
     {
         $stmt->execute();
         $result = $stmt->get_result();
