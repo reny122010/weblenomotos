@@ -61,11 +61,11 @@ angular.module('leno',[])
 		$http({
 	     	url: serverRouting.link+serverRouting.cancelarCompra,
 	     	method: "GET",
-	     	params: {"idcompra" : id} 
+	     	params: {"idpagamento" : id} 
 		})
 		.success(function(response){
-			$scope.pagamentos.removeValue('idcompra', id);
-			$window.alert("Pagamento cancelado");
+			$scope.pagamentos.removeValue('idpagamento', id);
+			$window.alert("Pagamento cancelado!");
 	    })
 	    .error(function(response){
 	        $window.alert(response.menssagem);
