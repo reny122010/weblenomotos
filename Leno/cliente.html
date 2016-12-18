@@ -183,6 +183,7 @@
                         <h2 class="control-label col-md-3 col-sm-3 col-xs-12">Selecionar cliente</h2>
                           <div class="col-md-7 col-sm-7 col-xs-12">
                             <select id="mySelect" class="select2_single form-control" ng-model="cpfSelect">
+                                <option disabled selected value></option>
                                 <option ng-selected="{{item.cpf == cpfSelect}}" ng-repeat="item in listClientes" value="{{item.cpf}}">{{item.cpf}} - {{item.nome}} {{item.sobrenome}}</option>
                             </select>
                           </div>

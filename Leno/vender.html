@@ -107,6 +107,7 @@
                         <h2 class="control-label col-md-3 col-sm-3 col-xs-12">Selecionar cliente</h2>
                         <div class="col-md-7 col-sm-7 col-xs-12">
                            <select ng-disabled="state.selectCliente" id="mySelectCliente" class="select2_single form-control" ng-model="cpfSelect">
+                                <option disabled selected value></option>
                                 <option ng-selected="{{item.cpf == cpfSelect}}" ng-repeat="item in listClientes" value="{{item.cpf}}">{{item.cpf}} - {{item.nome}} {{item.sobrenome}}</option>
                             </select>
                         </div>
@@ -118,7 +119,8 @@
                         <h2 class="col-md-3 col-sm-3 col-xs-12"><small>Quantidade</small></h2>
                         <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                           <select ng-disabled="state.selectProduto" id="mySelectProduto" class="select2_single form-control" ng-model="codigoSelect" tabindex="-1">
+                           <select ng-disabled="state.selectProduto" id="mySelectProduto" class="select2_single_produto form-control" ng-model="codigoSelect" tabindex="-1">
+                            <option disabled selected value></option>
                             <option ng-repeat="item in listProdutos" value="{{item.idproduto}}">{{item.codigodebarras}} - {{item.nome}}</option>
                           </select>
                         </div>
@@ -175,15 +177,18 @@
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel2">Pagamento</h4>
+                          <h4 class="modal-title" id="myModalLabel2">Pagamento para o cliente: {{pagamentoNome}}</h4>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group" style="margin-top: 10px;">
-                          <div class="col-md-5 col-sm-5 col-xs-12 form-group">
-                            <h2>VALOR</h2>
+                          <div class="col-md-7 col-sm-7 col-xs-12 form-group">
+                            <h2>Valor à pagar:</h2>
                           </div>
                           <div class="col-md-5 col-sm-5 col-xs-12 form-group">
                             <input id="valor" type="text" class="form-control " placeholder="R$ 0.00" >
                           </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                          <h2 ng-style="stylePagamento">{{finishValorTotal}}</h2>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -349,6 +354,10 @@
       $(document).ready(function() {
         $(".select2_single").select2({
           placeholder: "Selecione um cliente para essa compra",
+          allowClear: true
+        });
+        $(".select2_single_produto").select2({
+          placeholder: "Selecione um produto para adicionar a compra",
           allowClear: true
         });
 

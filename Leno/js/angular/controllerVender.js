@@ -9,6 +9,10 @@
  		$scope.listMyProdutos = [];
  		$scope.quantidade = 1;
 
+ 		$scope.finishValorTotal;
+ 		$scope.pagamentoNome;
+ 		$scope.stylePagamento;
+
  		$scope.userStatus = false;
  		$scope.valorTotal = 0.00;
 
@@ -51,6 +55,10 @@
 		 			"btnSelectProduto"	: true,
 		 			"inputQuantidade"	: true
 		 		};
+		 		$scope.stylePagamento = {
+				    "color" : "#2A3F54"
+				}
+
  			}
  			if(state == 1){
  				console.log("teste");
@@ -96,7 +104,7 @@
 			.success(function(response){
 				console.log(response);
 				$scope.user = response[0];
-				select(response[0].cpf+" - "+response[0].nome+" "+response[0].sobrenome);
+				$scope.pagamentoNome = response[0].nome+" "+response[0].sobrenome;
 		    })
 		    .error(function(response){
 		    	console.log(response);
@@ -277,8 +285,16 @@
 				})
 				.success(function(response){
 					console.log(response);
+					
 					if(response.retorno == 0){
+						$scope.finishValorTotal = "O valor total da compra: "+$scope.valorTotal;
 						atualState(0);
+					}
+					if(response.retorno == 1){
+						$scope.stylePagamento = {
+						    "color" : "red"
+						}
+						$scope.finishValorTotal = "O cliente não possui saldo suficiente, sua dívida é de: "+$scope.user.debito;
 					}
 					$window.alert(response.menssagem);
 			    })
@@ -314,7 +330,12 @@
 	 	};
 
 	 	$scope.showProdutoSelect = function(){
-	 		$scope.addProdutoCompra(document.getElementById("mySelectProduto").value);
+	 		if($scope.quantidade < 1){
+	 			$window.alert("A quantidade de itens que você está adicionando à compra, é menor que 1, verifique-a! ");
+	 		}else{
+	 			$scope.addProdutoCompra(document.getElementById("mySelectProduto").value);
+	 		}
+	 		
 	 	};
 
 	 	

@@ -4,7 +4,7 @@ angular.module('leno',[])
 
  	var serverRouting =  {
 		"link" : "http://127.0.0.1/apisisstc/",
-		"cancelarCompra": "cancelarPagamento.php",
+		"cancelarCompra": "removerPagamento.php",
 		"getUsers" 		: "listCliente.php",
 		"allPagamentos" : "listPagamento.php"
 	};
@@ -64,6 +64,7 @@ angular.module('leno',[])
 	     	params: {"idpagamento" : id} 
 		})
 		.success(function(response){
+			$scope.allPagamentos();
 			$scope.pagamentos.removeValue('idpagamento', id);
 			$window.alert("Pagamento cancelado!");
 	    })
@@ -79,6 +80,7 @@ angular.module('leno',[])
 		    params: {"cpf" : cpf }
 		})
 		.success(function(response){
+			$scope.pagamentos = [];
 			$scope.pagamentos = response;
 	    })
 	    .error(function(response){

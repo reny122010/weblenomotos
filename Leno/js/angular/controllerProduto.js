@@ -19,8 +19,11 @@ angular.module('leno',[])
 		};
 
  		$scope.addProduto = function(){
- 			console.log("Teste");
- 			$scope.produto.preco  = switchFloatPoint($scope.produto.preco);
+ 			if($scope.produto.quantidade == "" || $scope.produto.quantidade == undefined ){
+	 			$scope.produto.quantidade = -1;
+	 		}
+
+	 		$scope.produto.preco  = switchFloatPoint($scope.produto.preco);
 			$scope.produto.custo  = switchFloatPoint($scope.produto.custo);
  			$http({
 			     url: serverRouting.link+serverRouting.addProduto,
@@ -29,7 +32,12 @@ angular.module('leno',[])
 			})
 			.success(function(response){
 				console.log(response);
-				$scope.user = {};
+				$scope.produto = {};
+				$scope.produtos = [];
+				$scope.listProdutos = [];
+				pageProdutos = 0;
+				$scope.getProdutos();
+				$scope.getAllProduto();
 		        $window.alert(response.menssagem);
 		    })
 		    .error(function(response){
@@ -38,7 +46,7 @@ angular.module('leno',[])
 		    });
 	 	};
 
-	 	$scope.getUsers = function(){
+	 	$scope.getProdutos = function(){
 			$http({
 		     	url: serverRouting.link+serverRouting.getProduto,
 		     	method: "GET",
@@ -87,6 +95,6 @@ angular.module('leno',[])
 	 		$scope.showProduto(document.getElementById("mySelect").value);
 	 	}
 
-	 	$scope.getUsers();
+	 	$scope.getProdutos();
 	 	$scope.getAllProduto();
  	}]);
