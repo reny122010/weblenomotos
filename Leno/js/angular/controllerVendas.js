@@ -83,7 +83,7 @@ angular.module('leno',[])
 	    .error(function(response){
 	        $window.alert(response.menssagem);
 	        if($scope.vendas.length == 0){
-				$window.alert("A lista de pagamentos de vendas está vazia!");
+				$window.alert("A lista de vendas está vazia!");
 			}
 	    });
  	};
@@ -99,7 +99,7 @@ angular.module('leno',[])
 		.success(function(response){
 			$scope.vendas = response;
 			if($scope.vendas.length == 0){
-				$window.alert("A lista de pagamentos de vendas está vazia!");
+				$window.alert("A lista de vendas está vazia!");
 			}
 	    })
 	    .error(function(response){
