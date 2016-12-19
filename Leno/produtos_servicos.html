@@ -32,6 +32,19 @@
     <script type="text/javascript" src="../vendors/angular-1.5.8/angular.min.js"></script>
     <script type="text/javascript" src="../vendors/angular-1.5.8/angular-cookies.min.js"></script>
     <script type="text/javascript" src="js/angular/controllerProduto.js"></script>
+
+    <style type="text/css">
+
+      .reportItem  {
+        background-color: #ff6666 !important;
+      }
+ 
+
+      .reportItem td,a{
+        color: #fff;
+      }
+
+    </style>
   </head>
 
   <body class="nav-md" ng-controller="controllerProduto">
@@ -200,7 +213,7 @@
                         </thead>
 
                         <tbody>
-                          <tr class="even pointer" ng-repeat="item in produtos" ng-switch="">
+                          <tr class="even pointer" ng-repeat="item in produtos" ng-class="{reportItem: item.quantidade < 3 && item.quantidade != -1}" >
                             <td class=" ">{{item.codigodebarras}}</td>
                             <td class=" ">{{item.nome}}</td>
                             <td class=" ">{{item.preco}}</td>
