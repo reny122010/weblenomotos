@@ -1,6 +1,6 @@
 <?php
 
-$server="127.0.0.1";
+$server="192.168.0.107";
 $db="sisstc";
 $user="root";
 $pass="";
