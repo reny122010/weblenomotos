@@ -55,7 +55,8 @@ $sql = "SELECT * FROM  tbcompra where idcompra = ".$idcompra;
 
 	if ($resposta->num_rows > 0) {
     	while($row = $resposta->fetch_assoc()) {
-        	if (($row["quantidade"] >= $quantidade)or ($row["quantidade"]  = -1))
+        	if (($row["quantidade"] >= $quantidade)or ($row["quantidade"]  == -1))
+
         	{
         		$valor = $row["preco"]*$quantidade;	
         	}

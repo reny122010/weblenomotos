@@ -10,6 +10,8 @@
  		$scope.quantidade = 1;
 
  		$scope.finishValorTotal;
+ 		$scope.finishLimite;
+ 		$scope.finishDebito;
  		$scope.pagamentoNome;
  		$scope.stylePagamento;
 
@@ -288,13 +290,17 @@
 					
 					if(response.retorno == 0){
 						$scope.finishValorTotal = "O valor total da compra: "+$scope.valorTotal;
+						$scope.finishLimite = "Seu limite é de:"+$scope.user.limite;
+						$scope.finishDebito = "Seu débito é de:"+$scope.user.debito;
 						atualState(0);
 					}
 					if(response.retorno == 1){
 						$scope.stylePagamento = {
 						    "color" : "red"
 						}
-						$scope.finishValorTotal = "O cliente não possui saldo suficiente, sua dívida é de: "+$scope.user.debito;
+						$scope.finishValorTotal = "O cliente não possui saldo para concretizar a compra!";
+						$scope.finishLimite = "Seu limite é de:"+$scope.user.limite;
+						$scope.finishDebito = "Seu débito é de:"+$scope.user.debito;
 					}
 					$window.alert(response.menssagem);
 			    })
