@@ -170,7 +170,7 @@
               </div>
         </div>
 
-        <div class="modal fade bs-pagamento-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade bs-pagamento-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="modalPagamento">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
 
@@ -193,8 +193,8 @@
                           <h2 ng-style="stylePagamento">{{finishDebito}}</h2>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addPagamento()">Pagar</button>
+                          <button type="button" class="btn btn-default" ng-click="realizarCompra()">Debitar</button>
+                          <button type="button" class="btn btn-primary" ng-click="addPagamento()">Pagar</button>
                         </div>
 
                       </div>
@@ -215,7 +215,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="cancelarCompra()" href="" data-dismiss="modal">Cancelar</button>
-                <button type="button" data-dismiss="modal" class="btn btn-primary">Sair</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary">Voltar a compra</button>
               </div>
 
             </div>
@@ -227,7 +227,7 @@
           <h1 class="price">R$ {{valorTotal}}</h1>
           <span class="price-tax">Total</span>
           <br>
-          <button type="button" ng-disabled="state.realizarCompra" class="btn btn-success" ng-click="realizarCompra()" href="" data-toggle="modal" data-target=".bs-pagamento-modal-sm">REALIZAR VENDA</button>
+          <button type="button" ng-disabled="state.realizarCompra" class="btn btn-success"  href="" ng-click="checkPagamento()">REALIZAR VENDA</button>
           <button type="button"  ng-disabled="state.cancelarCompra"class="btn btn-danger"  data-toggle="modal" data-target=".bs-cancelar-modal-sm">CANCELAR</button>
         </div>
         <!-- /page content -->

@@ -275,6 +275,9 @@
 	 	};
 
 	 	$scope.realizarCompra = function(){
+	 		$('#modalPagamento').modal({
+			    show: 'false'
+			}); 
 	 		console.log($scope.compra.id);
 	 		console.log($scope.listMyProdutos);
 	 		if (typeof $scope.listMyProdutos === 'undefined' || $scope.listMyProdutos.length < 1) {
@@ -289,20 +292,14 @@
 					console.log(response);
 					
 					if(response.retorno == 0){
-						$scope.finishValorTotal = "O valor total da compra: "+$scope.valorTotal;
-						$scope.finishLimite = "Seu limite é de:"+$scope.user.limite;
-						$scope.finishDebito = "Seu débito é de:"+$scope.user.debito;
+						$window.alert(response.menssagem);
+						$('#modalPagamento').modal('hide');
 						atualState(0);
 					}
 					if(response.retorno == 1){
-						$scope.stylePagamento = {
-						    "color" : "red"
-						}
-						$scope.finishValorTotal = "O cliente não possui saldo para concretizar a compra!";
-						$scope.finishLimite = "Seu limite é de:"+$scope.user.limite;
-						$scope.finishDebito = "Seu débito é de:"+$scope.user.debito;
+						$window.alert(response.menssagem+", o valor não pode ficar em débito, é necessário pagar algum valor para que a compra possa ser aprovada!");
+						$('#modalPagamento').modal('show.bs.modal');
 					}
-					$window.alert(response.menssagem);
 			    })
 			    .error(function(response){
 			        $window.alert(response.menssagem);
@@ -310,6 +307,13 @@
 			}
 			
 	 	};
+
+	 	$scope.checkPagamento = function(){
+			$scope.finishValorTotal = "O valor total da compra: "+$scope.valorTotal;
+			$scope.finishLimite = "Seu limite é de:"+$scope.user.limite;
+			$scope.finishDebito = "Seu débito é de:"+$scope.user.debito;
+			$('#modalPagamento').modal('show');
+	 	}
 
 	 	$scope.addPagamento = function(){
 	 		var valor = document.getElementById('valor').value;
@@ -325,6 +329,7 @@
 				$scope.user.debito = parseFloat($scope.user.debito) - parseFloat(valor);
 				console.log(response);
 				$window.alert(response.menssagem);
+				$scope.realizarCompra();
 		    })
 		    .error(function(response){
 		        $window.alert(response.menssagem);
