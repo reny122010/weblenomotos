@@ -1,9 +1,8 @@
 ﻿angular.module('leno',[])
  .controller('controllerVender', ['$scope','$http','$location','$window',
  	function ($scope,$http,$location,$window) {
-
  		$scope.user;
- 		$scope.compra={};
+ 		$scope.compra = {};
  		$scope.listClientes = [];
  		$scope.listProdutos = [];
  		$scope.listMyProdutos = [];
@@ -297,6 +296,9 @@
 						atualState(0);
 					}
 					if(response.retorno == 1){
+						$scope.stylePagamento = {
+						    "color" : "red"
+						}
 						$window.alert(response.menssagem+", o valor não pode ficar em débito, é necessário pagar algum valor para que a compra possa ser aprovada!");
 						$('#modalPagamento').modal('show.bs.modal');
 					}
